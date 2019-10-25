@@ -85,7 +85,10 @@ header.header-fixed {
 header .el-menu-demo {
   padding-left: 300px !important;
 }
-
+.el-upload-dragger{
+  width: 196px !important;
+  height: 138px !important;
+}
 /* 主内容区 */
 main {
   display: -webkit-box;
@@ -109,10 +112,6 @@ main .main-right {
 }
 main .el-menu {
   background-color: transparent !important;
-}
-.el-upload-dragger {
-  height: 145px !important;
-  width: 265px !important;
 }
 .el-upload{
   height: 145px !important;

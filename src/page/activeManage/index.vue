@@ -6,40 +6,40 @@
         新增
       </el-button>
       <el-table  v-if="list" v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
-        <el-table-column align="center" label="id" width="80px">
+        <el-table-column align="center" label="序号" width="80px">
           <template slot-scope="scope">
             <span>{{ scope.row.id }}</span>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="name">
+        <el-table-column align="center" label="名宿名称">
           <template slot-scope="scope">
             <span>{{ scope.row.name }}</span>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="label">
+        <el-table-column align="center" label="标签">
           <template slot-scope="scope">
             <span>{{ scope.row.label }}</span>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="intro">
+        <el-table-column align="center" label="简介">
           <template slot-scope="scope">
             <span>{{ scope.row.intro }}</span>
           </template>
         </el-table-column>
-        <el-table-column align="center" class-name="status-col" label="State" width="100px">
+        <el-table-column align="center" class-name="status-col" label="状态" width="100px">
           <template slot-scope="{row}">
             <el-tag :type="row.state | statusFilter">
               {{ row.state | stateFilter }}
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="sortno" width="80px">
+        <el-table-column align="center" label="排名" width="80px">
           <template slot-scope="scope">
             <span>{{ scope.row.sortno }}</span>
           </template>
         </el-table-column>
 
-        <el-table-column label="Actions" align="center" class-name="small-padding fixed-width">
+        <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
           <template slot-scope="{row}">
             <el-button type="primary" size="mini" @click="handleUpdate(row)">
               修改
@@ -57,7 +57,7 @@
         </el-table-column>
       </el-table>
 
-      <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" width="65%">
+      <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" width="45%">
         <el-form ref="dataForm" :model="temp" :rules="rules" label-position="left" label-width="100px" style="width: 80%; margin-left:50px;">
           <el-form-item label="id" prop="name" hidden>
             <el-input v-model="temp.id" />
@@ -91,7 +91,7 @@
                 将文件拖到此处，或
                 <em>点击上传</em>
               </div>
-              <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过2M</div>
+              <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且宽高为750*502</div>
             </el-upload>
             <el-popover
               placement="right"
@@ -126,7 +126,7 @@
                 将文件拖到此处，或
                 <em>点击上传</em>
               </div>
-              <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过2M</div>
+              <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且宽高为673*367px</div>
             </el-upload>
             <el-popover
               placement="right"
@@ -153,7 +153,7 @@
                 将文件拖到此处，或
                 <em>点击上传</em>
               </div>
-              <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过2M</div>
+              <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且宽628px</div>
             </el-upload>
             <el-popover
               placement="right"
@@ -179,7 +179,7 @@
                 将文件拖到此处，或
                 <em>点击上传</em>
               </div>
-              <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过2M</div>
+              <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且宽为610px</div>
             </el-upload>
             <el-popover
               placement="right"
@@ -190,7 +190,7 @@
             </el-popover>
           </el-form-item>
           <el-form-item label="排名" prop="sortno">
-            <el-input v-model="temp.sortno" />
+            <el-input v-model="temp.sortno" type="number"/>
           </el-form-item>
           <el-form-item label="列表图片" prop="listImg">
             <el-upload
@@ -209,7 +209,7 @@
                 将文件拖到此处，或
                 <em>点击上传</em>
               </div>
-              <div class="el-upload__tip" slot="tip">只能上传图片，且不超过2M</div>
+              <div class="el-upload__tip" slot="tip">只能上传图片，且宽高为361*271px</div>
             </el-upload>
             <el-popover
               placement="right"
@@ -223,10 +223,10 @@
             <el-input v-model="temp.listIntro" />
           </el-form-item>
           <el-form-item label="价格" prop="amt">
-            <el-input v-model="temp.amt" />
+            <el-input v-model="temp.amt" type="number"/>
           </el-form-item>
           <el-form-item label="图库图片数量" prop="wash">
-            <el-input v-model="temp.wash" />
+            <el-input v-model="temp.wash" type="number"/>
           </el-form-item>
           <el-form-item label="推荐图片" prop="recomImg">
             <el-upload
@@ -245,7 +245,7 @@
                 将文件拖到此处，或
                 <em>点击上传</em>
               </div>
-              <div class="el-upload__tip" slot="tip">只能上传图片，且不超过2M</div>
+              <div class="el-upload__tip" slot="tip">只能上传图片，且宽高为250*216px</div>
             </el-upload>
             <el-popover
               placement="right"
@@ -272,7 +272,7 @@
                 将文件拖到此处，或
                 <em>点击上传</em>
               </div>
-              <div class="el-upload__tip" slot="tip">只能上传图片，且不超过2M</div>
+              <div class="el-upload__tip" slot="tip">只能上传图片，且宽高为701*364px</div>
             </el-upload>
             <el-popover
               placement="right"
@@ -284,7 +284,7 @@
           </el-form-item>
           <!-- 热门 -->
           <el-form-item label="热门排行" prop="hotSortno">
-            <el-input v-model="temp.hotSortno" />
+            <el-input v-model="temp.hotSortno" type="number"/>
           </el-form-item>
           <el-form-item label="热门图片" prop="hotImg">
             <el-upload
@@ -301,7 +301,7 @@
                 将文件拖到此处，或
                 <em>点击上传</em>
               </div>
-              <div class="el-upload__tip" slot="tip">只能上传图片，且不超过2M</div>
+              <div class="el-upload__tip" slot="tip">只能上传图片，且宽高为701*300px</div>
             </el-upload>
             <el-popover
               placement="right"
@@ -315,20 +315,20 @@
             <el-input v-model="temp.hotName" />
           </el-form-item>
         </el-form>
-        <div class="filter-container">
+        <div class="filter-container" v-if='editShow'>
           <div style="margin: 20px 0 0 50px;color:rgb(64,158,255)">房型须知列表</div>
           <el-button class="filter-item" style="margin: 5px 0 10px 50px" type="primary" icon="el-icon-edit" @click="addRoom">
             添加
           </el-button>
         </div>
-        <el-table v-loading="listLoading" :data="roomList" border fit highlight-current-row style="width: 90%;margin-left:50px">
-          <el-table-column prop="id" label="房间id"></el-table-column>
-          <el-table-column prop="name" label="房间名字"></el-table-column>
-          <el-table-column prop="size" label="床型"></el-table-column>
-          <el-table-column prop="peopleNum" label="可住人数"></el-table-column>
-          <el-table-column prop="wifi" label="有无wifi"></el-table-column>
-          <el-table-column prop="amt" label="价格"></el-table-column>
-          <el-table-column label="Actions" align="center" width="160" class-name="small-padding fixed-width">
+        <el-table v-loading="listLoading" :data="roomList" border fit highlight-current-row style="width: 80%;margin-left:50px" v-if='editShow'>
+          <el-table-column prop="id" label="房间序号" align="center"></el-table-column>
+          <el-table-column prop="name" label="房间名字" align="center"></el-table-column>
+          <el-table-column prop="size" label="床型" align="center"></el-table-column>
+          <el-table-column prop="peopleNum" label="可住人数" align="center"></el-table-column>
+          <el-table-column prop="wifi" label="有无无线网" align="center"></el-table-column>
+          <el-table-column prop="amt" label="价格" align="center"></el-table-column>
+          <el-table-column label="操作" align="center" width="160" class-name="small-padding fixed-width">
             <template slot-scope="{row}" >
               <el-button type="primary" size="mini" @click="editRoom(row)">
                 修改
@@ -344,23 +344,23 @@
         </el-table>
 
         <!-- 图库 -->
-        <div class="filter-container">
+        <div class="filter-container" v-if='editShow'>
           <div style="margin: 20px 0 0 50px;color:rgb(64,158,255)">图库图片列表</div>
           <el-button class="filter-item" style="margin: 5px 0 10px 50px" type="primary" icon="el-icon-edit" @click="addImg">
             添加
           </el-button>
         </div>
-        <el-table v-loading="listLoading" :data="imgList" border fit highlight-current-row style="width: 90%;margin-left:50px">
-          <el-table-column prop="houseId" label="名宿id" width="80"></el-table-column>
-          <el-table-column prop="id" label="房间id" width="80"></el-table-column>
-          <el-table-column prop="name" label="name" width="80"></el-table-column>
-          <el-table-column prop="sortno" label="排序" width="80"></el-table-column>
-          <el-table-column prop="img" label="图片地址" width="80">
+        <el-table v-loading="listLoading" :data="imgList" border fit highlight-current-row style="width: 80%;margin-left:50px" v-if='editShow'>
+          <el-table-column prop="houseId" label="名宿序号" align="center"></el-table-column>
+          <el-table-column prop="id" label="房间序号" align="center"></el-table-column>
+          <el-table-column prop="name" label="图片名" align="center"></el-table-column>
+          <el-table-column prop="sortno" label="排序" align="center"></el-table-column>
+          <el-table-column prop="img" label="图片地址" align="center">
             <template  slot-scope="scope">            
               <img :src="scope.row.img"  height="50" />
             </template>
           </el-table-column>
-          <el-table-column label="Actions" align="center" width="180" class-name="small-padding fixed-width">
+          <el-table-column label="操作" align="center" width="160" class-name="small-padding fixed-width">
             <template slot-scope="{row}" >
               <el-button type="primary" size="mini" @click="editImg(row)">
                 修改
@@ -372,6 +372,7 @@
           </el-table-column>
         </el-table>
         
+        <div style="margin: 20px 0 0 50px;color:rgb(64,158,255)" v-if='!editShow'>先保存再添加房型须知和图库</div>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible = false">
             取消
@@ -384,7 +385,7 @@
       </el-dialog>
 
       <!-- 编辑名宿推荐 -->
-      <el-dialog :visible.sync="roomFormVisible" width="80%">
+      <el-dialog :visible.sync="roomFormVisible" width="45%">
         <el-form ref="dataForm" :model="room" :rules="roomRules" label-position="left" label-width="100px" style="width: 80%; margin-left:50px;">
           <el-form-item label="名称" prop="name">
             <el-input v-model="room.name" />
@@ -393,13 +394,13 @@
             <el-input v-model="room.size" />
           </el-form-item>
           <el-form-item label="入住人数" prop="peopleNum">
-            <el-input v-model="room.peopleNum" />
+            <el-input v-model="room.peopleNum" type="number"/>
           </el-form-item>
-          <el-form-item label="是否有wifi" prop="wifi">
-            <el-input v-model="room.wifi" />
+          <el-form-item label="有无无线网" prop="wifi">
+            <el-input v-model="room.wifi" placeholder="有为1，无为0" type="number"/>
           </el-form-item>
           <el-form-item label="价格" prop="amt">
-            <el-input v-model="room.amt" />
+            <el-input v-model="room.amt" type="number"/>
           </el-form-item>
           <el-form-item label="房型" prop="roomType">
             <el-input v-model="room.roomType" />
@@ -434,7 +435,7 @@
                 将文件拖到此处，或
                 <em>点击上传</em>
               </div>
-              <div class="el-upload__tip" slot="tip">只能上传图片，且不超过2M</div>
+              <div class="el-upload__tip" slot="tip">只能上传图片，且宽高为150*112px</div>
             </el-upload>
             <el-popover
               placement="right"
@@ -459,7 +460,7 @@
         <iframe width='375' height='812' frameborder='0' scrolling='auto' :src="iframeUrl"></iframe>
       </el-dialog>
       <!-- 编辑图库 -->
-      <el-dialog :visible.sync="imgFormVisible" width="80%">
+      <el-dialog :visible.sync="imgFormVisible" width="45%">
         <el-form ref="dataForm" :model="img" :rules="imgRules" label-position="left" label-width="100px" style="width: 80%; margin-left:50px;">
           <el-form-item label="名宿id" prop="houseId" hidden>
             <el-input v-model="img.houseId" hidden/>
@@ -471,7 +472,7 @@
             <el-input v-model="img.name" />
           </el-form-item>
           <el-form-item label="排序" prop="sortno">
-            <el-input v-model="img.sortno" />
+            <el-input v-model="img.sortno" type="number"/>
           </el-form-item>
           <el-form-item label="图片地址" prop="img" class="total_box">
             <el-upload
@@ -488,7 +489,7 @@
                 将文件拖到此处，或
                 <em>点击上传</em>
               </div>
-              <div class="el-upload__tip" slot="tip">只能上传图片，且不超过2M</div>
+              <div class="el-upload__tip" slot="tip">只能上传图片，且宽710px</div>
             </el-upload>
             <el-popover
               placement="right"
@@ -500,7 +501,7 @@
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
-          <el-button @click="dialogFormVisible = false">
+          <el-button @click="imgFormVisible = false">
             取消
           </el-button>
           <el-button type="primary" @click="submitImg(img)">
@@ -532,10 +533,11 @@ export default {
   },
   data () {
     return {
+      editShow:false,
       file:'',
       list: null,
-      roomList:null,
-      imgList:null,
+      roomList:[],
+      imgList:[],
       url:'',
       ids:[1,2,3,4,5],
       listLoading: true,
@@ -632,7 +634,7 @@ export default {
         label: '轰趴聚会'
       }],
       rules:{
-        name: [
+          name: [
             { required: true, message: '请输入活动名称', trigger: 'blur' }
           ],
           label: [
@@ -657,19 +659,19 @@ export default {
             { required: true, message: '请上传酒店设施图片', trigger: 'blur' }
           ],
           sortno: [
-            { required: true, message: '请输入排名', trigger: 'blur' }
+            { required: true, message: '请输入排名且为数字', trigger: 'blur' }
           ],
           listIntro: [
             { required: true, message: '请输入列表简介', trigger: 'blur' }
           ],
           amt: [
-            { required: true, message: '请输入价格', trigger: 'blur' }
+            { required: true, message: '请输入价格且为数字', trigger: 'blur' }
           ],
           area: [
             { required: true, message: '请上传头图', trigger: 'blur' }
           ],
           wash: [
-            { required: true, message: '请输入图库图片数量', trigger: 'blur' }
+            { required: true, message: '请输入图库图片数量且位数字', trigger: 'blur' }
           ]
       },
       roomRules:{
@@ -683,7 +685,7 @@ export default {
           { required: true, message: '请输入入住人数', trigger: 'blur' }
         ],
         wifi: [
-          { required: true, message: '请选择有无WiFi', trigger: 'blur' }
+          { required: true, message: '请选择有无无线网', trigger: 'blur' }
         ],
         amt: [
           { required: true, message: '请输入价格', trigger: 'blur' }
@@ -748,6 +750,9 @@ export default {
       console.log(this.roomList)
     },
     handleUpdate (row) {
+      this.imgList = []
+      this.roomList = []
+      this.editShow = true
       console.log(this.temp,'temp')
       this.temp = Object.assign({}, row) // copy obj
       this.temp.label = (this.temp.label || "").split(',')
@@ -785,16 +790,16 @@ export default {
                   that.temp.addressImg = _res.link
                 })
               }else{
-                that.messageText(_img.width,_img.height)
+                that.messageText(673,367)
               }
             }else if(value == 'listImgUrl') {
-              if(_img.width == 701 && _img.height == 364){
+              if(_img.width == 361 && _img.height == 271){
                 uploader.uploadFile(file.raw, name, function (_res) {
                   that.temp.listImg = _res.link
                 })
               }
               else{
-                that.messageText(_img.width,_img.height)
+                that.messageText(361,271)
               }
             }
             else if(value == 'hotImgUrl') {
@@ -805,7 +810,7 @@ export default {
                 })
               }
               else{
-                that.messageText(_img.width,_img.height)
+                that.messageText(701,300)
               }
             }
             else if(value == 'topUrl') {
@@ -816,7 +821,7 @@ export default {
                 })
               }
               else{
-                that.messageText(_img.width,_img.height)
+                that.messageText(750,502)
               }
             }
             else if(value == 'recomImgUrl') {
@@ -827,7 +832,7 @@ export default {
                 })
               }
               else{
-                that.messageText(_img.width,_img.height)
+                that.messageText(250,216)
               }
             }
             else if(value == 'moreImgUrl') {
@@ -838,7 +843,7 @@ export default {
                 })
               }
               else{
-                that.messageText(_img.width,_img.height)
+                that.messageText(701,364)
               }
             }
             else if(value == 'enterTimeUrl') {
@@ -849,7 +854,7 @@ export default {
                 })
               }
               else{
-                that.messageText(_img.width)
+                that.messageText(628)
               }
             }
             else if(value == 'outTimeUrl') {
@@ -860,7 +865,7 @@ export default {
                 })
               }
               else{
-                that.messageText(_img.width)
+                that.messageText(610)
               }
             }
             else if(value == 'houseUrl') {
@@ -871,7 +876,7 @@ export default {
                 })
               }
               else{
-                that.messageText(_img.width)
+                that.messageText(150,112)
               }
             }
             else if(value == 'img') {
@@ -900,7 +905,7 @@ export default {
     async submitForm (temp) {
       const arrRules = {
         "name":temp.name,
-        "label":this.value,
+        "label":temp.label,
         "area":temp.area,
         "intro":temp.intro,
         "introduce":temp.introduce,
@@ -909,9 +914,10 @@ export default {
         "enterTime":temp.enterTime,
         "outTime":temp.outTime,
         "sortno":temp.sortno,
-        "listImg":temp.listImg,
+        // "listImg":temp.listImg,
         "listIntro":temp.listIntro,
-        "amt":temp.amt
+        "amt":temp.amt,
+        "wash":temp.wash
       }
       for (const index in arrRules) {
         if(arrRules[index] == '' || arrRules[index] == [] || arrRules[index] == null || arrRules[index] == undefined){
@@ -931,6 +937,9 @@ export default {
     },
     //添加
     handleCreate () {
+      this.editShow = false;
+      this.imgList = []
+      this.roomList = []
       this.resetTemp()
       this.value = []
       this.dialogStatus = 'create'
@@ -995,8 +1004,8 @@ export default {
         RoomDescription: '',
         link: ''
       }
-      this.roomList = ''
-      this.imgList = ''
+      this.roomList = []
+      this.imgList = []
     },
     //提交表格
     async submitRoom (room) {
@@ -1100,12 +1109,12 @@ export default {
   height: 117px;
   padding-left: 20px;
 }
-.el-upload-dragger{
+.el-upload /deep/ .el-upload-dragger{
   width: 200px !important;
   height: 90px !important;
 }
-.upload_box {
+/* .upload_box {
   width: 100px !important;
   height: 90px !important;
-}
+} */
 </style>

@@ -7,10 +7,10 @@
             </el-button>
         </div>
         <el-table  :data="labelList" border fit highlight-current-row style="width: 100%">
-            <el-table-column prop="name" label="标题" width="140"></el-table-column>
+            <el-table-column prop="name" label="标题" align="center"></el-table-column>
             <!-- <el-table-column prop="labelId" label="名宿id" width="120"></el-table-column> -->
-            <el-table-column prop="sortno" label="排序" width="80"></el-table-column>
-            <el-table-column prop="img" label="头图" width="120">          
+            <el-table-column prop="sortno" label="排序" width="80" align="center"></el-table-column>
+            <el-table-column prop="img" label="头图" align="center">          
                 <template  slot-scope="scope">            
                     <img :src="scope.row.img"  width="80" />
                 </template>
@@ -22,8 +22,8 @@
                     </el-tag>
                 </template>
             </el-table-column>
-            <el-table-column prop="createdAt" label="创建时间"></el-table-column>
-            <el-table-column prop="updatedAt" label="更新时间"></el-table-column>
+            <el-table-column prop="createdAt" label="创建时间" align="center"></el-table-column>
+            <el-table-column prop="updatedAt" label="更新时间" align="center"></el-table-column>
             <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
             <template slot-scope="{row}" >
                 <el-button type="primary" size="mini" @click="editLaleList(row)">
@@ -44,7 +44,7 @@
         </el-table>
 
         <!-- 编辑分类 -->
-        <el-dialog :visible.sync="lableFormVisible" width="55%">
+        <el-dialog :visible.sync="lableFormVisible" width="45%">
             <el-form ref="dataForm" :model="label" :rules="classRules" label-position="left" label-width="100px" style="width: 80%; margin-left:50px;">
                 <el-form-item label="标题" prop="name">
                     <el-input v-model="label.name"/>
@@ -90,16 +90,16 @@
             </el-form>
 
             <div style="margin: 20px 0 15px 50px;color:rgb(64,158,255)">关联名宿列表</div>
-            <el-table :data="showList" border fit highlight-current-row style="width: 90%;margin-left:50px">
-                <el-table-column prop="name" label="名宿名称" ></el-table-column>
-                <el-table-column prop="listIntro" label="简介"></el-table-column>
-                <el-table-column prop="labelName" label="标题"></el-table-column>
-                <el-table-column prop="labelImgMIn" label="小图" width="80">
+            <el-table :data="showList" border fit highlight-current-row style="width: 80%;margin-left:50px">
+                <el-table-column prop="name" label="名宿名称" align="center"></el-table-column>
+                <el-table-column prop="listIntro" label="简介" align="center"></el-table-column>
+                <el-table-column prop="labelName" label="标题" align="center"></el-table-column>
+                <el-table-column prop="labelImgMIn" label="小图" width="80" align="center">
                     <template  slot-scope="scope">            
                         <img :src="scope.row.labelImgMIn"  width="50" />
                     </template> 
                 </el-table-column>
-                <el-table-column prop="labelImgMax" label="大图" width="80">
+                <el-table-column prop="labelImgMax" label="大图" width="80" align="center">
                     <template  slot-scope="scope">            
                         <img :src="scope.row.labelImgMax"  width="50" />
                     </template> 
@@ -123,7 +123,7 @@
             </div>
         </el-dialog>
         <!-- 关联名宿的编辑 -->
-        <el-dialog :visible.sync="relativeVisible" width="80%">
+        <el-dialog :visible.sync="relativeVisible" width="45%">
             <el-form ref="dataForm" :model="house" :rules="lableRules" label-position="left" label-width="100px" style="width: 80%; margin-left:50px;">
                 <el-form-item label="标题" prop="labelName">
                     <el-input v-model="house.labelName"/>
@@ -284,6 +284,7 @@ export default {
     },
     methods: {
         async getList () {
+            this.chooseList = []
             const data = await fetchList(this.listQuery)
             console.log(data,'data')
             const items = data.house

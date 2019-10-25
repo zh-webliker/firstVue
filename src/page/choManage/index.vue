@@ -12,42 +12,41 @@
         border
         fit
         highlight-current-row
-        style="width: 100%"
-      >
+        style="width: 100%">
       
-        <el-table-column align="center" label="id" width="80px">
+        <el-table-column align="center" label="序号" width="80px">
           <template slot-scope="scope">
             <span>{{ scope.row.id }}</span>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="name">
+        <el-table-column align="center" label="名称">
           <template slot-scope="scope">
             <span>{{ scope.row.name }}</span>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="intro">
+        <el-table-column align="center" label="线路介绍">
           <template slot-scope="scope">
             <span>{{ scope.row.intro }}</span>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="listImg">
+        <el-table-column align="center" label="列表图片">
           <template slot-scope="scope">
              <img :src="scope.row.listImg" width="100" />
           </template>
         </el-table-column>
-        <el-table-column align="center" class-name="status-col" label="State" width="100px">
+        <el-table-column align="center" class-name="status-col" label="状态" width="100px">
           <template slot-scope="{row}">
             <el-tag :type="row.state | statusFilter">
               {{ row.state | stateFilter }}
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column align="center" label="sortno" width="80px">
+        <el-table-column align="center" label="排名" width="80px">
           <template slot-scope="scope">
             <span>{{ scope.row.sortno }}</span>
           </template>
         </el-table-column>
-        <el-table-column label="Actions" align="center" class-name="small-padding fixed-width">
+        <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
           <template slot-scope="{row}">
             <el-button type="primary" size="mini" @click="choUpdate(row)">修改</el-button>
             <el-button
@@ -62,7 +61,7 @@
         </el-table-column>
       </el-table>
       <!-- cho表单 -->
-      <el-dialog :visible.sync="choFormVisible" width="55%">
+      <el-dialog :visible.sync="choFormVisible" width="45%">
         <el-form
           ref="dataForm"
           :model="choInfo"
@@ -84,7 +83,7 @@
                 将文件拖到此处，或
                 <em>点击上传</em>
               </div>
-              <div class="el-upload__tip" slot="tip">只能上传图片，且不超过2M</div>
+              <div class="el-upload__tip" slot="tip">只能上传图片，且宽高为703*325</div>
             </el-upload>
             <el-popover
               placement="right"
@@ -99,7 +98,7 @@
             <el-input v-model="choInfo.listName" />
           </el-form-item>
           <el-form-item label="排序" prop="sortno">
-            <el-input v-model="choInfo.sortno" />
+            <el-input v-model="choInfo.sortno" type="number"/>
           </el-form-item>
           <el-form-item label="详细图片" prop="img">
             <el-upload action="" drag accept="image/jpeg,image/png,image/gif" type="drag" :on-change="onUploadChange('choImg')" :auto-upload="false" :show-file-list="false" style="float:left">
@@ -108,7 +107,7 @@
                 将文件拖到此处，或
                 <em>点击上传</em>
               </div>
-              <div class="el-upload__tip" slot="tip">只能上传图片，且不超过2M</div>
+              <div class="el-upload__tip" slot="tip">只能上传图片，且宽高为767*414</div>
             </el-upload>
             <el-popover
               placement="right"
@@ -132,7 +131,7 @@
                 将文件拖到此处，或
                 <em>点击上传</em>
               </div>
-              <div class="el-upload__tip" slot="tip">只能上传图片，且不超过2M</div>
+              <div class="el-upload__tip" slot="tip">只能上传图片，且宽高为672*310</div>
             </el-upload>
             <el-popover
               placement="right"
@@ -158,13 +157,13 @@
         <el-button class="filter-item" style="margin-bottom: 10px;margin-left:50px" type="primary" icon="el-icon-edit" @click="addDay">
           新增
         </el-button>
-        <el-table v-loading="dayLoading" :data="dayList" border fit highlight-current-row style="width: 90%;margin-left:50px">
-          <el-table-column prop="id" label="id"></el-table-column>
-          <el-table-column prop="days" label="天数"></el-table-column>
-          <el-table-column prop="name" label="name"></el-table-column>
-          <el-table-column prop="amt" label="价格"></el-table-column>
-          <el-table-column prop="catering" label="餐饮"></el-table-column>
-          <el-table-column label="Actions" align="center" width="150" class-name="small-padding fixed-width">
+        <el-table v-loading="dayLoading" :data="dayList" border fit highlight-current-row style="width: 80%;margin-left:50px">
+          <el-table-column prop="id" label="线路序号" width="80" align="center"></el-table-column>
+          <el-table-column prop="days" label="天数" width="80" align="center"></el-table-column>
+          <el-table-column prop="name" label="标题" align="center"></el-table-column>
+          <el-table-column prop="amt" label="价格" width="80" align="center"></el-table-column>
+          <el-table-column prop="catering" label="餐饮" align="center"></el-table-column>
+          <el-table-column label="操作" align="center" width="160" class-name="small-padding fixed-width">
             <template slot-scope="{row}" >
               <el-button type="primary" size="mini" @click="dayUpdate(row)">
                 修改
@@ -186,7 +185,7 @@
         </div>
       </el-dialog>
       <!-- day表单 -->
-      <el-dialog :visible.sync="dayFormVisible">
+      <el-dialog :visible.sync="dayFormVisible" width="45%">
         <el-form
           ref="dataForm"
           :model="dayInfo"
@@ -202,10 +201,10 @@
             <el-input v-model="dayInfo.name" />
           </el-form-item>
           <el-form-item label="价格" prop="amt">
-            <el-input v-model="dayInfo.amt" />
+            <el-input v-model="dayInfo.amt" type="number"/>
           </el-form-item>
           <el-form-item label="路线" prop="line">
-            <el-input v-model="dayInfo.line" />
+            <el-input v-model="dayInfo.line" type="textarea"/>
           </el-form-item>
           <el-form-item label="公交路线" prop="busline">
             <el-input v-model="dayInfo.busline" />
@@ -214,20 +213,21 @@
             <el-input v-model="dayInfo.catering" />
           </el-form-item>
         </el-form>
-        <el-button class="filter-item" style="margin-bottom: 10px;" type="primary" icon="el-icon-edit" @click="addScenic">
+        <div style="margin: 20px 0 5px 50px;color:rgb(64,158,255)">景点列表</div>
+        <el-button class="filter-item" style="margin-bottom: 10px;margin-left:50px" type="primary" icon="el-icon-edit" @click="addScenic">
           新增
         </el-button>
-        <el-table v-loading="scenicLoading" :data="scenicList" border fit highlight-current-row style="width: 90%">
+        <el-table v-loading="scenicLoading" :data="scenicList" border fit highlight-current-row style="width: 80%;margin-left:50px">
           
-          <el-table-column prop="id" label="id"></el-table-column>
-          <el-table-column prop="name" label="名称"></el-table-column>
+          <el-table-column prop="id" label="景点序号" align="center"></el-table-column>
+          <el-table-column prop="name" label="名称" align="center"></el-table-column>
           
           <el-table-column align="center" label="图片">
             <template slot-scope="scope">
               <img :src="scope.row.img" width="100" />
             </template>
           </el-table-column>
-          <el-table-column label="Actions" align="center" width="180" class-name="small-padding fixed-width">
+          <el-table-column label="操作" align="center" width="180" class-name="small-padding fixed-width">
             <template slot-scope="{row}" >
               <el-button type="primary" size="mini" @click="scenicUpdate(row)">
                 修改
@@ -249,7 +249,7 @@
         </div>
       </el-dialog>
       <!-- scenic表单 -->
-      <el-dialog :visible.sync="scenicFormVisible">
+      <el-dialog :visible.sync="scenicFormVisible" width="45%">
         <el-form
           ref="dataForm"
           :model="scenicInfo"
@@ -271,7 +271,7 @@
                 将文件拖到此处，或
                 <em>点击上传</em>
               </div>
-              <div class="el-upload__tip" slot="tip">只能上传图片，且不超过2M</div>
+              <div class="el-upload__tip" slot="tip">只能上传图片，且宽高672*310px</div>
             </el-upload>
             <el-popover
               placement="right"
@@ -615,6 +615,7 @@ export default {
         }
     },
     async getHouseList() {
+      this.houseList=[]
       const data = await fetchList(this.listQuery);
       for(let i = 0;i< data.house.length;i++){
         if(data.house[i]["state"]==1){
@@ -640,7 +641,7 @@ export default {
                   that.choInfo.listImg = _res.link
                 })
               }else{
-                that.messageText(_img.width,_img.height)
+                that.messageText(703,325)
               }
             }
             if(value == 'choImg') {
@@ -649,7 +650,7 @@ export default {
                   that.choInfo.img = _res.link
                 })
               }else{
-                that.messageText(_img.width,_img.height)
+                that.messageText(767,414)
               }
             }
             if(value == 'choStayImg') {
@@ -658,7 +659,7 @@ export default {
                   that.choInfo.stayImg = _res.link
                 })
               }else{
-                that.messageText(_img.width,_img.height)
+                that.messageText(672,310)
               }
             }
             if(value == 'scenicImg') {
@@ -667,7 +668,7 @@ export default {
                   that.scenicInfo.img = _res.link
                 })
               }else{
-                that.messageText(_img.width,_img.height)
+                that.messageText(672,310)
               }
             }
         }) 
